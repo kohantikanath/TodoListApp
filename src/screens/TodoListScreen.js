@@ -56,7 +56,7 @@ export default function TodoListScreen() {
       <FlatList
         data={tasks}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
+        renderItem={({ item, index }) => ( 
           <TodoItem
             task={item}
             onToggle={() => toggleCompletion(index)}

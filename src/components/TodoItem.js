@@ -1,12 +1,44 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+} from "react-native";
 
-export default function TodoItem({ task, onToggle, onDelete }) {
+export default function TodoItem({ task, onToggle, onDelete, onEdit }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(task.name);
+
+  const handleSubmitEditing = () => {
+    if (editedText.trim()) {
+      onEdit(editedText.trim());
+      setIsEditing(false);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, task.completed && styles.completed]}>
-        {task.name}
-      </Text>
+      {isEditing ? (
+        <TextInput
+          style={styles.editInput}
+          value={editedText}
+          onChangeText={setEditedText}
+          onBlur={handleSubmitEditing}
+          onSubmitEditing={handleSubmitEditing}
+          autoFocus
+        />
+      ) : (
+        <TouchableOpacity
+          style={styles.textContainer}
+          onPress={() => setIsEditing(true)}
+        >
+          <Text style={[styles.text, task.completed && styles.completed]}>
+            {task.name}
+          </Text>
+        </TouchableOpacity>
+      )}
       <View style={styles.buttons}>
         <TouchableOpacity onPress={onToggle} style={styles.toggleButton}>
           <Text style={styles.buttonText}>
@@ -36,13 +68,22 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  text: {
+  textContainer: {
     flex: 1,
+  },
+  text: {
     fontSize: 16,
   },
   completed: {
     textDecorationLine: "line-through",
     color: "grey",
+  },
+  editInput: {
+    flex: 1,
+    fontSize: 16,
+    padding: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: "#B67BD8",
   },
   buttons: {
     flexDirection: "row",

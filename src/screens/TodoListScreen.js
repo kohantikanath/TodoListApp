@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { View, FlatList, StyleSheet, TextInput } from "react-native";
 import { FAB } from "react-native-paper";
@@ -25,6 +24,13 @@ export default function TodoListScreen() {
 
   const addTask = (taskName) => {
     setTasks([...tasks, { name: taskName, completed: false }]);
+  };
+
+  const editTask = (index, newName) => {
+    const updatedTasks = tasks.map((task, i) =>
+      i === index ? { ...task, name: newName } : task
+    );
+    setTasks(updatedTasks);
   };
 
   const toggleCompletion = (index) => {
@@ -60,6 +66,7 @@ export default function TodoListScreen() {
             task={item}
             onToggle={() => toggleCompletion(index)}
             onDelete={() => deleteTask(index)}
+            onEdit={(newName) => editTask(index, newName)}
           />
         )}
       />

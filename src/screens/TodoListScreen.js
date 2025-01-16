@@ -86,7 +86,7 @@ export default function TodoListScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: "lavender" },
+  container: { flex: 1, padding: 20, backgroundColor: "#634992" },
   searchBarContainer: {
     justifyContent: "center",
     alignItems: "center",

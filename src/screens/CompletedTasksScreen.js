@@ -39,7 +39,7 @@ export default function CompletedTasksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lavender",
+    backgroundColor: "#634992",
     padding: 16,
   },
   taskContainer: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     marginVertical: 8,
-    backgroundColor: "#ffffff",
+    backgroundColor: "lavender",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

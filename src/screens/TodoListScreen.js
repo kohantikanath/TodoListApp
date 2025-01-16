@@ -1,18 +1,15 @@
+
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Button,
-  TextInput,
-  StyleSheet,
-} from "react-native";
+import { View, FlatList, StyleSheet, TextInput } from "react-native";
+import { FAB } from "react-native-paper";
 import { saveTasks, loadTasks } from "../utils/storage";
 import TodoItem from "../components/TodoItem";
+import AddTaskModel from "../components/AddTaskModel";
 
 export default function TodoListScreen() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -26,11 +23,8 @@ export default function TodoListScreen() {
     saveTasks(tasks);
   }, [tasks]);
 
-  const addTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, { name: newTask, completed: false }]);
-      setNewTask("");
-    }
+  const addTask = (taskName) => {
+    setTasks([...tasks, { name: taskName, completed: false }]);
   };
 
   const toggleCompletion = (index) => {
@@ -44,19 +38,24 @@ export default function TodoListScreen() {
     setTasks(tasks.filter((_, i) => i !== index));
   };
 
+  const filteredTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Add a new task"
-        value={newTask}
-        onChangeText={setNewTask}
-      />
-      <Button title="Add Task" onPress={addTask} />
+      <View style={styles.searchBarContainer}>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search Tasks"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      </View>
       <FlatList
-        data={tasks}
+        data={filteredTasks}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => ( 
+        renderItem={({ item, index }) => (
           <TodoItem
             task={item}
             onToggle={() => toggleCompletion(index)}
@@ -64,11 +63,41 @@ export default function TodoListScreen() {
           />
         )}
       />
+      <FAB
+        style={styles.fab}
+        icon="plus"
+        color="white"
+        onPress={() => setIsModalVisible(true)}
+      />
+      <AddTaskModel
+        visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        onAddTask={addTask}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  input: { borderWidth: 1, marginBottom: 10, padding: 10 },
+  container: { flex: 1, padding: 20, backgroundColor: "lavender" },
+  searchBarContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  searchBar: {
+    width: "50%",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: "#fff",
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "#B67BD8",
+  },
 });

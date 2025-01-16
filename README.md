@@ -14,8 +14,8 @@ A simple and intuitive Todo List Application built using React Native and Expo C
 
 ## Screens
 
-- **Todo List Screen**: View and manage your tasks.
-- **Completed Tasks Screen**: View and delete completed tasks.
+- **Todo List Screen**:Displays all tasks with options to toggle completion status.
+- **Completed Tasks Screen**: Displays all completed tasks.
 
 ## Installation
 
@@ -44,7 +44,7 @@ A simple and intuitive Todo List Application built using React Native and Expo C
 
 1. Start the Metro Bundler:
     ```sh
-    npx react-native start
+    npm run start
     ```
 
 2. Run the app on an Android or iOS emulator:
@@ -61,12 +61,12 @@ A simple and intuitive Todo List Application built using React Native and Expo C
 - **Mark as Completed**: Click on a task to toggle its completion status.
 - **Delete a Task**: Click the "Delete" button next to a task to remove it.
 - **View Completed Tasks**: Navigate to the Completed Tasks screen using the bottom tab navigator.
+- **Edit Tasks**: Touch the task box and edit the task
+- **Search Option**: If you want to search the task then you can use the search option
 
 
 ## Dependencies
 
 - [React Native](https://reactnative.dev/)
 - [React Navigation](https://reactnavigation.org/)
-- [React Native Paper](https://callstack.github.io/react-native-paper/)
-- [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/)

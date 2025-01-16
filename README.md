@@ -1,6 +1,6 @@
 # TodoListApp
 
-A simple Todo List application built with React Native, featuring a Todo List screen and a Completed Tasks screen. The app uses `react-native-paper` for UI components and `react-native-vector-icons` for icons.
+A simple and intuitive Todo List Application built using React Native and Expo CLI, designed to manage and track your tasks efficiently. This project features separate screens for managing all tasks and viewing completed tasks.
 
 ## Features
 

@@ -6,6 +6,7 @@
 //   StyleSheet,
 //   TextInput,
 // } from "react-native";
+// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 // export default function TodoItem({ task, onToggle, onDelete, onEdit }) {
 //   const [isEditing, setIsEditing] = useState(false);
@@ -46,7 +47,7 @@
 //           </Text>
 //         </TouchableOpacity>
 //         <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
-//           <Text style={styles.buttonText}>Delete</Text>
+//           <Icon name="delete" size={20} color="red" />
 //         </TouchableOpacity>
 //       </View>
 //     </View>
@@ -60,7 +61,7 @@
 //     alignItems: "center",
 //     padding: 10,
 //     marginBottom: 10,
-//     backgroundColor: "#f9f9f9",
+//     backgroundColor: "lavender",
 //     borderRadius: 5,
 //     shadowColor: "#000",
 //     shadowOffset: { width: 0, height: 2 },
@@ -89,19 +90,20 @@
 //     flexDirection: "row",
 //   },
 //   toggleButton: {
-//     backgroundColor: "#4CAF50",
-//     padding: 10,
-//     borderRadius: 5,
+//     backgroundColor: "green",
+//     padding: 9,
+//     borderRadius: 17,
 //     marginRight: 5,
 //   },
 //   deleteButton: {
-//     backgroundColor: "#F44336",
+//     backgroundColor: "lavender",
 //     padding: 10,
 //     borderRadius: 5,
 //   },
 //   buttonText: {
 //     color: "#fff",
 //     fontWeight: "bold",
+//     fontSize: 11,
 //   },
 // });
 
@@ -149,12 +151,14 @@ export default function TodoItem({ task, onToggle, onDelete, onEdit }) {
       )}
       <View style={styles.buttons}>
         <TouchableOpacity onPress={onToggle} style={styles.toggleButton}>
-          <Text style={styles.buttonText}>
-            {task.completed ? "Undo" : "Complete"}
-          </Text>
+          <Icon
+            name={task.completed ? "undo" : "check"}
+            size={24}
+            color={task.completed ? "Grey" : "green"}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
-          <Icon name="delete" size={20} color="#fff" />
+          <Icon name="delete" size={20} color="red" />
         </TouchableOpacity>
       </View>
     </View>
@@ -195,20 +199,17 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
+    alignItems: "center",
   },
   toggleButton: {
-    backgroundColor: "#9A446E",
-    padding: 10,
-    borderRadius: 5,
+    padding: 8,
     marginRight: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   deleteButton: {
-    backgroundColor: "#502942",
+    backgroundColor: "lavender",
     padding: 10,
     borderRadius: 5,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
   },
 });

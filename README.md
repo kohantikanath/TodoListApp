@@ -8,6 +8,7 @@ A simple Todo List application built with React Native, featuring a Todo List sc
 - Mark tasks as completed
 - Delete tasks
 - View completed tasks
+- Search Task
 - Persistent storage using AsyncStorage
 
 ## Screens
